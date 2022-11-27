@@ -10,7 +10,7 @@ To run app:
 player_try list, bulls list, cows list and message.
 
 To give up and reload the game type 'give up' in input field.
-If you guessed the right answer, the game will reload automaticaly.
+If you gave the right answer, the game will reload automaticaly.
 Also you can reload the game by reloading the html page.
 
 To implement frontend you should creaete table for lists and 
