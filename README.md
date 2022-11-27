@@ -1,5 +1,5 @@
 # BullsCows logical game.
-Guess given 4-digit number with your tries
+Guess given 4-digit number with your tries.
 Backend - Fastapi, Fastapi websocket.
 Frontend - html.
 
