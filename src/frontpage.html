@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
     <head>
         <title>Chat</title>
+        <meta charset="UTF-8">
+
     </head>
     <body>
         <h1>WebSocket Bulls-Cows</h1>
-        <h3>Input your 4-digit number (without 'zero' and replays)</h3>
+        <h3>Input your 4-digit number (without 'zero' and 'doubles')</h3>
         <form action="" onsubmit="sendMessage(event)">
             <input type="text" id="messageText" autocomplete="off"/>
             <button>Send your try</button>
@@ -13,7 +15,6 @@
         <h4>Beautiful frontend</h4>
         <ul id='messages'>
         </ul>
-
 
         <script>
             var ws = new WebSocket("ws://localhost:8000/ws");

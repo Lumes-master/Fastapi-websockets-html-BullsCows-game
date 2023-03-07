@@ -4,12 +4,7 @@ from random import sample
 from fastapi.encoders import jsonable_encoder
 
 
-def create_game_answer() -> str:
-    """create 4number answer with different digits. Used in
-    "creating_new_game" function """
-    number_list = ('1', '2', '3', '4', '5', '6', '7', '8', '9')
-    answer = ''.join(sample(number_list, 4))
-    return answer
+
 
 
 class Game(BaseModel):
@@ -19,6 +14,12 @@ class Game(BaseModel):
     cows_list: list[str] = []
     message: str = 'Hello'
 
+    @classmethod
+    def create_answer(cls) -> str:
+        number_list = ('1', '2', '3', '4', '5', '6', '7', '8', '9')
+        answer = ''.join(sample(number_list, 4))
+        return answer
+
     def reset(self):
-        self.answer = create_game_answer()
+        self.answer = self.create_answer()
         self.cows_list, self.bulls_list, self.player_try_list = [], [], []
