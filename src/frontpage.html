@@ -1,35 +1,91 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Chat</title>
         <meta charset="UTF-8">
-
+<!--        <a class="stylesheet" href="static/css/main.css"></a>-->
+        <link rel="stylesheet" href="static/css/main.css">
     </head>
     <body>
+    <div class="wrapper">
+    </div>>
+
+    <header>
+
+    </header>
         <h1>WebSocket Bulls-Cows</h1>
         <h3>Input your 4-digit number (without 'zero' and 'doubles')</h3>
         <form action="" onsubmit="sendMessage(event)">
             <input type="text" id="messageText" autocomplete="off"/>
             <button>Send your try</button>
+
         </form>
-        <h4>Beautiful frontend</h4>
-        <ul id='messages'>
-        </ul>
+
+    <button onclick="give_up()">give up</button>
+    <button onclick="new_game()">new game</button>
+
+           <h4>Beautiful frontend</h4>
+        <table>
+            <tr>
+                <th>Player try</th>
+                <th>Bulls</th>
+                <th>Cows</th>
+            </tr>
+            <tbody id="myTable">
+
+            </tbody>
+        </table>
+        <div>
+            <p id="message">
+
+            </p>
+        </div>
+<!--        <ul id='messages'>-->
+<!--        </ul>-->
 
         <script>
+
             var ws = new WebSocket("ws://localhost:8000/ws");
-            ws.onmessage = function(event) {
-                var messages = document.getElementById('messages')
-                var message = document.createElement('li')
-                var content = document.createTextNode(event.data)
-                message.appendChild(content)
-                messages.appendChild(message)
-            };
+            ws.onmessage = function(event){
+            var data = JSON.parse(event.data)
+            var table = document.getElementById('myTable')
+            table.innerHTML = ''
+            var text = document.getElementById('message')
+            text.innerHTML = ''
+            buildTable(data)
+            message(data)
+            }
+
+            function buildTable(data){
+                var table = document.getElementById('myTable')
+                for (var i = 0; i < data['bulls_list'].length; i++){
+                    var line = `<tr>
+                                <td> ${data['player_try_list'][i]}</td>
+                                <td> ${data['bulls_list'][i]}</td>
+                                <td> ${data['cows_list'][i]}</td>
+                           </tr>`
+                           table.innerHTML += line}
+               }
+
+            function message(data){
+                console.log(data['message'])
+                if (data['message']) {
+                var message = document.getElementById('message')
+                message.innerHTML = data['message']
+            }
+            }
             function sendMessage(event) {
                 var input = document.getElementById("messageText")
                 ws.send(input.value)
                 input.value = ''
                 event.preventDefault()
+            }
+            const give_up = function() {
+                ws.send('give up')
+            }
+            const new_game = function() {
+                ws.send('new game')
             }
         </script>
     </body>

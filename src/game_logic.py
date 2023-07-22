@@ -1,6 +1,6 @@
 """Functions for game logic """
 
-from schemas import Game
+from schemas import Game, GameNoAnswer
 
 
 def verify_try_is_correct(player_try: str) -> bool:
@@ -37,18 +37,20 @@ def give_up(game: Game) -> Game:
     game.message = f'Загаданное число - {game.answer}'
     return game
 
-
 def outer_game_function():
     game = Game(answer=Game.create_answer())
-    def game_logic (request_value: str) -> Game:
-        try:
+    def game_logic (player_try: str) -> Game:
+        if game.cows_list:
             if game.cows_list[-1] == '4' or game.message.startswith('Загаданное'):
                 game.reset()
-        except IndexError:
-            pass
-        player_try = request_value
+        # except IndexError:
+        #     pass
         if player_try == 'give up':
             return give_up(game)
+
+        elif player_try == 'new game':
+            game.reset()
+            return game
 
         elif not verify_try_is_correct(player_try):
             game.message = "Число должно содержать 4 неповторяющиеся цифры в диапазоне 1-9"
@@ -56,7 +58,7 @@ def outer_game_function():
 
         update_game_fields(game, player_try)
         if game.cows_list[-1] == '4':
-            game.message = f"Вы вычислили загаданное число - {game.answer}. Поздравляем"
+            game.message = f"Good guess. The answer is - {game.answer}. Congrats"
         return game
 
     return game_logic

@@ -13,5 +13,4 @@ async def websocket_bullscow(websocket: WebSocket):
         data = await websocket.receive_text()
         game = game1(data)
         game_json = jsonable_encoder(game)
-        print(game_json)
         await websocket.send_json(game_json)

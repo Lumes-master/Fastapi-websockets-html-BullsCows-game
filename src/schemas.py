@@ -5,14 +5,14 @@ from fastapi.encoders import jsonable_encoder
 
 
 
-
-
-class Game(BaseModel):
-    answer: str | None = None
+class GameNoAnswer(BaseModel):
     player_try_list: list[str] = []
     bulls_list: list[str] = []
     cows_list: list[str] = []
-    message: str = 'Hello'
+    message: str = ''
+
+class Game(GameNoAnswer):
+    answer: str = None
 
     @classmethod
     def create_answer(cls) -> str:
@@ -23,3 +23,4 @@ class Game(BaseModel):
     def reset(self):
         self.answer = self.create_answer()
         self.cows_list, self.bulls_list, self.player_try_list = [], [], []
+        self.message = ''
