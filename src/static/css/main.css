@@ -1,12 +1,147 @@
+body{
+height:100%;}
+
+.fon{
+min-height: 100vh;
+width:100%;
+background-image: url("../images/v882batch2-kul-13.jpg");
+background-size: contain;
+}
+
 .wrapper {
-  min-height: 100%;
-  max-width: 1500px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  overflow: hidden;
+ max-width: 1000px;
+min-height: 100vh;
+margin: auto;
+display: flex;
+flex-direction: column;
+}
+.header{
+max-width:1000px;
+background-image: url("../images/grass.jpeg");
+display: flex;
+flex-wrap: nowrap;
+}
+.header_text{
+  font-size: 70px;
+  display: inline-block;
+color:#FF3132;
+padding-bottom: 20px;
+text-align: center;
+text-shadow: 1px 1px;
+max-width: 70%;
+min-width: 70%;
+}
+.bull_head{
+  display: inline-block;
+  width: 14.5%;
+  height: auto; 
+  margin-right: auto;
+  vertical-align: bottom;
+/*  max-width: 100px;
+  max-height: 60px;*/
+}
+.cow_head{
+  display: inline-block;
+   width: 14.5%;
+   height: auto;
+   margin-left: auto;
+   vertical-align: bottom;
+
+   }
+
+.game_block{
+flex: 1 1 auto;
+  background: #EBE5E3;
+}
+.game{
+  display: inline-block; 
+  width: 69%;
+  max-width: 690 px;
+  vertical-align: top;
+}
+.game_header{
+  text-align: center;
+  font-size: 40px;
+  color: #FF00E3;
+}
+.form{
+  width: 75%;
+  font-size: 40px;
+  padding-left: 22%;
+}
+.input{
+font-size: 20px;
+}
+.button_send{
+  font-size: 20px;
+  background: blue;
+}
+.buttons{
+  padding-left: 22%;
+
+}
+.give_up{
+  background: #F87F7B;
+  font-size: 18px;
+}
+.new_game{
+  background: #84F182;
+  font-size: 18px;
+}
+
+.inner_table{
+    border: solid green;
+    width: 75%;
+}
+
+tr{
+  text-align: center;
+  border: solid black;
+}
+.player_try{
+color:blue;
+text-align: center;
+}
+.message{
+  font-size: 20px;
+  color: #2C3DF6;
+  padding-left: 12%;
+  padding-right: 12%;
+  text-align: center;
+}
+
+.game_rules{
+ display: inline-block; 
+ width: 30%;
+ max-width: 290 px;
+ margin: auto;
+ border-left:  solid double blue;
+ background-color: #A4F806;
+}
+.rules_header{
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  color: #FF00E3;
+  padding: 10px 0 0 0;
+}
+.rules_text{
+  font-size: 18px;
+  padding: 0 10px 0 10px ;
+}
+.example{
+  font-size: 22px;
+  color: #FF2043;
+  text-align: center;
+}
+.inner_table, tr, td{
+  margin: auto;
+  border: 1px solid green;
+  border-collapse: separate;
+}
+
+footer{
+text-align: center;
+background-color: #00FF00;
+padding:10px;
 }

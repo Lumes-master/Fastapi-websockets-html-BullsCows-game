@@ -2,91 +2,96 @@
 <html lang="ru">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Chat</title>
+        <title>BullsCows</title>
         <meta charset="UTF-8">
-<!--        <a class="stylesheet" href="static/css/main.css"></a>-->
         <link rel="stylesheet" href="{{url_for('static', path='/css/main.css')}}">
     </head>
     <body>
+    <div class="fon">
+
+
     <div class="wrapper">
-    </div>>
+        <div class="header">
+        <header >
 
-    <header>
+        <img class="bull_head" src="static/images/cow-head-right.png" alt="#">
+        <h1 class="header_text"> Guess the number </h1>
+        <img class='cow_head' src="static/images/cow-head.png" alt="#">
+        </header>
+        </div>
+        <div class="game_block">
 
-    </header>
-        <h1>WebSocket Bulls-Cows</h1>
-        <h3>Input your 4-digit number (without 'zero' and 'doubles')</h3>
+        <div class="game">
+         <h3 class="game_header">Input your 4-digit number <br/>
+             (without 'zero' and 'doubles')</h3>
+            <div class="form">
         <form action="" onsubmit="sendMessage(event)">
-            <input type="text" id="messageText" autocomplete="off"/>
-            <button>Send your try</button>
-
+            <input  class="input" type="text" id="messageText" autocomplete="off"/>
+            <button class="button_send">Send your try</button>
         </form>
-
-    <button onclick="give_up()">give up</button>
-    <button onclick="new_game()">new game</button>
-
-           <h4>Beautiful frontend</h4>
-        <table>
+            </div>
+            <div class="buttons">
+    <button class="give_up" onclick="give_up()">give up</button>
+    <button class="new_game" onclick="new_game()">new game</button>
+            </div>
+            <br>
+            <br>
+            <div class="table_try">
+        <table class ='inner_table'>
             <tr>
                 <th>Player try</th>
                 <th>Bulls</th>
                 <th>Cows</th>
             </tr>
             <tbody id="myTable">
-
             </tbody>
         </table>
-        <div>
-            <p id="message">
-
-            </p>
+            </div>
+            <div>
+                    <p class="message" id="message">
+                    </p>
+                </div>
+    </div>
+<div class="game_rules">
+    <div  class="rules_header"> Game Rules </div>
+    <div class="rules_text">
+        <p>You must guess the riddled four-digit number.
+            No zero used and no number used twice.
+            After you send your try, you'll get an answer with two digits.
+            First - quantity of numbers, that are in riddled number.
+            Second means, how many of them are on a proper place.
+        </p>
+    <div class="example">Example: </div>
+    <div>  Riddled number is 8231. Your try is 1234. So you will get answer:
+        <div class="example_table">
+    <table class="inner_table">
+        <tr>
+            <td class="player_try"> player try </td>
+            <td> bulls </td>
+            <td> cows </td>
+        </tr>
+        <tr>
+            <td class="player_try"> 1234 </td>
+            <td> 3 </td>
+            <td> 2 </td>
+        </tr>
+    </table>
         </div>
-<!--        <ul id='messages'>-->
-<!--        </ul>-->
+            Now you will know that overall you guessed <b>3 </b>(bulls) numbers (<b>123</b>-4) and <b>2</b> (cows)
+        of them are on proper place (1-<b>23</b>-4)
 
-        <script>
+        </div>
+</div>
+            </div>
+            </div>
+        <script src='static/js/main.js'>
 
-            var ws = new WebSocket("ws://localhost:8000/ws");
-            ws.onmessage = function(event){
-            var data = JSON.parse(event.data)
-            var table = document.getElementById('myTable')
-            table.innerHTML = ''
-            var text = document.getElementById('message')
-            text.innerHTML = ''
-            buildTable(data)
-            message(data)
-            }
-
-            function buildTable(data){
-                var table = document.getElementById('myTable')
-                for (var i = 0; i < data['bulls_list'].length; i++){
-                    var line = `<tr>
-                                <td> ${data['player_try_list'][i]}</td>
-                                <td> ${data['bulls_list'][i]}</td>
-                                <td> ${data['cows_list'][i]}</td>
-                           </tr>`
-                           table.innerHTML += line}
-               }
-
-            function message(data){
-                console.log(data['message'])
-                if (data['message']) {
-                var message = document.getElementById('message')
-                message.innerHTML = data['message']
-            }
-            }
-            function sendMessage(event) {
-                var input = document.getElementById("messageText")
-                ws.send(input.value)
-                input.value = ''
-                event.preventDefault()
-            }
-            const give_up = function() {
-                ws.send('give up')
-            }
-            const new_game = function() {
-                ws.send('new game')
-            }
         </script>
+        <footer>
+    2023 р.
+</footer>
+    </div>
+    </div>
     </body>
+
 </html>
